@@ -6,6 +6,7 @@ import { logger } from './logger';
 import http from "http";
 import { Server } from "socket.io";
 import RoomsService from "./rooms/rooms-service";
+import cors from "cors";
 
 const app = express();
 const server = http.createServer(app);
@@ -42,6 +43,8 @@ connectDB();
 
 app.use(logger);
 app.use(express.json());
+app.use(cors())
+
 app.use('/api/v1/', globalRouter);
 
 app.get('/helloworld', (request, response) => {
